@@ -1,6 +1,3 @@
-# keystor1
-
-UnknownDiagramError: No diagram type detected matching given configuration for text: mermaid
 graph TB
     subgraph Users ["6. Клиентский уровень (UI и доступ)"]
         Admin[Администраторы ОС/БД]
@@ -15,7 +12,7 @@ graph TB
         RBAC[Ролевая модель доступа]
     end
 
-    subgraph Core ["1 & 5. Ядро Хранилища (Vault/Stronghold/Passwork)"]
+    subgraph Core ["1 & 5. Ядро Хранилища"]
         direction TB
         Enc[Шифрование AES-256 / Хеширование]
         Master[Мастер-ключ / Unseal]
@@ -36,17 +33,19 @@ graph TB
         Mon[Инфраструктурный мониторинг]
         Bastion[Интеграция с СКДПУ НТ]
     end
+
+    %% Взаимодействия
     User & Admin & Dev --> Browser
     Browser --> Auth
     Auth --> RBAC
     RBAC --> Core
     
-    Core <--> API
-    API --> K8s
-    API --> CICD
-    API --> OS
+    Core <---- API
+    API ----> K8s
+    API ----> CICD
+    API ----> OS
     
-    Core --> SIEM
-    Core --> Mon
+    Core ----> SIEM
+    Core ----> Mon
     Core -.-> FSTEK
-    Core <--> Bastion
+    Core <----> Bastion
