@@ -1,4 +1,5 @@
-graph TB
+
+    graph TB
     subgraph Users ["6. Клиентский уровень (UI и доступ)"]
         Admin[Администраторы ОС/БД]
         Dev[DevOps/Разработчики]
